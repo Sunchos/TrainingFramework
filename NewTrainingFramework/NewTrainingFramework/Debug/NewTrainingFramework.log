@@ -1,0 +1,7 @@
+﻿  stdafx.cpp
+  Shaders.cpp
+  NewTrainingFramework.cpp
+  Generating Code...
+NewTrainingFramework.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  NewTrainingFramework.vcxproj -> C:\Users\Sun\Desktop\gameloft\TrainingFramework\NewTrainingFramework\\BIN\NewTrainingFramework.exe
+  NewTrainingFramework.vcxproj -> C:\Users\Sun\Desktop\gameloft\TrainingFramework\NewTrainingFramework\\BIN\NewTrainingFramework.pdb (Full PDB)
