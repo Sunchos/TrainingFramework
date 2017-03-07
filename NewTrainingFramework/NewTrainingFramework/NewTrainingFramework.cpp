@@ -23,6 +23,10 @@ int Init ( ESContext *esContext )
 	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
 	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z =  0.0f;
 
+	verticesData[0].color.x = 0.0f; verticesData[0].color.y = 1.0f; verticesData[0].color.z = 0.0f;
+	verticesData[1].color.x = 1.0f; verticesData[1].color.y = 0.0f; verticesData[1].color.z = 0.0f;
+	verticesData[2].color.x = 0.0f; verticesData[2].color.y = 0.0f; verticesData[2].color.z = 1.0f;
+
 	//buffer object
 	glGenBuffers(1, &vboId); //buffer object name generation
 	glBindBuffer(GL_ARRAY_BUFFER, vboId); //buffer object binding
@@ -42,11 +46,18 @@ void Draw ( ESContext *esContext )
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 
-	
+	GLfloat *ptr = (GLfloat*)0;
 	if(myShaders.positionAttribute != -1) //attribute passing to shader, for uniforms use glUniform1f(time, deltaT); glUniformMatrix4fv( m_pShader->matrixWVP, 1, false, (GLfloat *)&rotationMat );
 	{
 		glEnableVertexAttribArray(myShaders.positionAttribute);
-		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), ptr);
+	}
+
+	if (myShaders.colorAttribute_ != -1)
+	{
+		glEnableVertexAttribArray(myShaders.colorAttribute_);
+		glVertexAttribPointer(myShaders.colorAttribute_, 3, GL_FLOAT,
+			GL_FALSE, sizeof(Vertex), ptr + 3);
 	}
 
 	glDrawArrays(GL_TRIANGLES, 0, 3);
