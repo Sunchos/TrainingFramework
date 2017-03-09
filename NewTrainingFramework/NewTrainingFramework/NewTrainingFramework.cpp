@@ -11,10 +11,12 @@
 
 GLuint vboId;
 Shaders myShaders;
+Matrix m;
+float m_time;
 
 int Init ( ESContext *esContext )
 {
-	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+	glClearColor ( 0.3f, 0.3f, 0.3f, 1.0f );
 
 	//triangle data (heap)
 	Vertex verticesData[3];
@@ -33,6 +35,8 @@ int Init ( ESContext *esContext )
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW); //creation and initializion of buffer onject storage
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+	m.SetIdentity();
+
 	//creation of shaders and program 
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 
@@ -45,12 +49,14 @@ void Draw ( ESContext *esContext )
 	glUseProgram(myShaders.program);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-
+	
 	GLfloat *ptr = (GLfloat*)0;
 	if(myShaders.positionAttribute != -1) //attribute passing to shader, for uniforms use glUniform1f(time, deltaT); glUniformMatrix4fv( m_pShader->matrixWVP, 1, false, (GLfloat *)&rotationMat );
 	{
 		glEnableVertexAttribArray(myShaders.positionAttribute);
 		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), ptr);
+		//glUniform1f(m_time, deltaT);
+		glUniformMatrix4fv(myShaders.matrixTransform_, 1, GL_FALSE, (GLfloat *)&m);
 	}
 
 	if (myShaders.colorAttribute_ != -1)
@@ -69,7 +75,8 @@ void Draw ( ESContext *esContext )
 
 void Update ( ESContext *esContext, float deltaTime )
 {
-
+	m_time += deltaTime;
+	m.SetRotationX(m_time);
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)

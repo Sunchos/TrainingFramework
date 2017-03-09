@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "../Utilities/utilities.h" 
 #include "Shaders.h"
+#include <iostream>
 
 int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 {
@@ -22,6 +23,12 @@ int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 	//finding location of uniforms / attributes
 	positionAttribute = glGetAttribLocation(program, "a_posL");
 	colorAttribute_ = glGetAttribLocation(program, "a_color");
+	matrixTransform_ = glGetUniformLocation(program, "u_matT");
+	
+	if (matrixTransform_ == GL_INVALID_OPERATION)
+		std::cout << "error invalid operator" << "\n";
+	if (matrixTransform_ == GL_INVALID_OPERATION)
+		std::cout << "error INVALID_OPERATION" << "\n";
 
 	return 0;
 }

@@ -1,1 +1,13 @@
-﻿  Utilities.vcxproj -> D:\programming\C++\OpenGL\TrainingFramework\NewTrainingFramework\Debug\Utilities.lib
+﻿  stdafx.cpp
+  TGA.cpp
+  MemoryOperators.cpp
+  MemoryManager.cpp
+  Math.cpp
+d:\programming\c++\opengl\trainingframework\newtrainingframework\utilities\math.cpp(10): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+d:\programming\c++\opengl\trainingframework\newtrainingframework\utilities\math.cpp(104): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+d:\programming\c++\opengl\trainingframework\newtrainingframework\utilities\math.cpp(208): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  esUtil_win.cpp
+  esUtil.cpp
+  esShader.cpp
+  Generating Code...
+  Utilities.vcxproj -> D:\programming\C++\OpenGL\TrainingFramework\NewTrainingFramework\Debug\Utilities.lib
